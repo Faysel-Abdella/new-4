@@ -14,12 +14,14 @@ const Checkbox= ({
   Label=true
 }:CheckboxProps) => {
   const handleCheckboxChange = (option: string) => {
+    if (onChange){
     if (selectedValues.includes(option)) {
       onChange(selectedValues.filter((value) => value !== option));
     } else {
       onChange([...selectedValues, option]);
     }
   };
+}
 
   return (
     <div

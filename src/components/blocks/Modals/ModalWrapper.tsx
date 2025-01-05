@@ -11,7 +11,7 @@ const ModalWrapper = ({
 }) => {
   return (
     <div
-      className={`p-10 space-y-10 ${width} ${height} bg-white shadow-large absolute inset-0 m-auto z-50 `}
+      className={` ${width} ${height} bg-white shadow-large absolute inset-0 m-auto z-50 `}
     >
       {children}
     </div>

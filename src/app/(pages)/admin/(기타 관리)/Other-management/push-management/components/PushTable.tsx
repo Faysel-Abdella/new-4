@@ -1,5 +1,7 @@
 import React from "react";
 import { PushType } from "./type";
+import Modal from "@/src/components/blocks/Modals/Modal";
+import { useDisclosure } from "@nextui-org/react";
 
 const tabs = [
   "번호",
@@ -130,6 +132,7 @@ const PushTable = ({
 }: {
   handleClickOnLink: () => void;
 }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <div className="bg-[white] w-full text-[14px] h-full">
       <div className="grid grid-cols-9 text-center bg-[#F1F3F6]">
@@ -159,7 +162,10 @@ const PushTable = ({
             {row.title}
           </div>
 
-          <div className="flex items-center justify-center py-[10px] underline decoration-main-light-color text-main-light-color cursor-pointer border-r-[1px] border-r-[#F1F3F6]">
+          <div
+            onClick={onOpen}
+            className="flex items-center justify-center py-[10px] underline decoration-main-light-color text-main-light-color cursor-pointer border-r-[1px] border-r-[#F1F3F6]"
+          >
             {row.situation}
           </div>
           <div className="flex items-center justify-center py-[10px] border-r-[1px] border-r-[#F1F3F6]">
@@ -179,6 +185,18 @@ const PushTable = ({
           </div>
         </div>
       ))}
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        cancelBtnLabel="닫기"
+        buttonLabel={"발송 취소"}
+      >
+        <div className=" w-full flex justify-center items-center pt-[50px] pb-[30px]">
+          <span className="text-[20px] font-[400] text-[#333333]">
+            발송을 취소하시겠습니까?
+          </span>
+        </div>
+      </Modal>
     </div>
   );
 };

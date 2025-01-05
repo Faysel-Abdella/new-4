@@ -1,6 +1,8 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { ChatListType } from "./type";
+import ChatModal from "@/src/components/blocks/chat/chatModal";
+import { useDisclosure } from "@nextui-org/react";
 
 const tabs = [
   "번호",
@@ -116,8 +118,8 @@ const data: ChatListType[] = [
 ];
 
 const ChatListTable = () => {
-  // const [selectedChat, setSelectedChat] = useState<string | null>(null);
-
+  const [selectedChatSender, setSelectedChat] = useState("");
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   // const seeDetails = (sender: string) => {
   // setSelectedChat(sender);
   // };
@@ -133,37 +135,48 @@ const ChatListTable = () => {
       </div>
 
       {data.map((row, rowIndex) => (
-        <div
-          key={rowIndex}
-          className="grid grid-cols-7 text-center  text-[#A3A6AB] border-b-[1px] border-b-[#F1F3F6]"
-        >
-          <div className="flex py-[10px] items-center justify-center border-x-[1px] border-x-[#F1F3F6]">
-            {row.num}
-          </div>
-          <div className="flex flex-col py-[10px] items-center justify-center border-r-[1px] border-r-[#F1F3F6]">
-            <p>{row.creationDate}</p>
-            <p>{row.creationTime}</p>
-          </div>
-          <div className="flex items-center justify-center py-[10px] border-r-[1px] border-r-[#F1F3F6]">
-            {row.sender}
-          </div>
-          <div className="flex items-center justify-center py-[10px] border-r-[1px] border-r-[#F1F3F6]">
-            {row.representative}
-          </div>
-          <div className="flex items-center justify-center py-[10px] border-r-[1px] border-r-[#F1F3F6]">
-            {row.equipmentOperator}
-          </div>
-          <div className="flex items-center justify-center py-[10px] border-r-[1px] border-r-[#F1F3F6]">
-            {row.equipmentRepresentative}
-          </div>
+        <div key={rowIndex}>
           <div
-            // onClick={() => seeDetails(row.sender)}
-            className="flex items-center justify-center py-[10px] underline decoration-main-light-color text-main-light-color cursor-pointer border-r-[1px] border-r-[#F1F3F6]"
+            key={rowIndex}
+            className="grid grid-cols-7 text-center  text-[#A3A6AB] border-b-[1px] border-b-[#F1F3F6]"
           >
-            {row.details}
+            <div className="flex py-[10px] items-center justify-center border-x-[1px] border-x-[#F1F3F6]">
+              {row.num}
+            </div>
+            <div className="flex flex-col py-[10px] items-center justify-center border-r-[1px] border-r-[#F1F3F6]">
+              <p>{row.creationDate}</p>
+              <p>{row.creationTime}</p>
+            </div>
+            <div className="flex items-center justify-center py-[10px] border-r-[1px] border-r-[#F1F3F6]">
+              {row.sender}
+            </div>
+            <div className="flex items-center justify-center py-[10px] border-r-[1px] border-r-[#F1F3F6]">
+              {row.representative}
+            </div>
+            <div className="flex items-center justify-center py-[10px] border-r-[1px] border-r-[#F1F3F6]">
+              {row.equipmentOperator}
+            </div>
+            <div className="flex items-center justify-center py-[10px] border-r-[1px] border-r-[#F1F3F6]">
+              {row.equipmentRepresentative}
+            </div>
+            <div
+              onClick={() => {
+                onOpen();
+                setSelectedChat(row.sender);
+              }}
+              className="flex items-center justify-center py-[10px] underline decoration-main-light-color text-main-light-color cursor-pointer border-r-[1px] border-r-[#F1F3F6]"
+            >
+              {row.details}
+            </div>
           </div>
         </div>
       ))}
+      <ChatModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        senderName={selectedChatSender}
+        profileName={"발주자명"}
+      />
     </div>
   );
 };

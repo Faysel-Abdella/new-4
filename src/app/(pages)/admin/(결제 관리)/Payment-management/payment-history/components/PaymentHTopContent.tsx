@@ -1,19 +1,19 @@
-'use client'
-import { RadioButton } from '@/src/components/blocks/buttons/RadioButton';
-import { SearchInput } from '@/src/components/blocks/inputs/SearchInput';
-import React, { useState } from 'react'
+"use client";
+import { RadioButton } from "@/src/components/blocks/buttons/RadioButton";
+import { SearchInput } from "@/src/components/blocks/inputs/SearchInput";
+import React, { useState } from "react";
 
 const PaymentHTopContent = () => {
-    const [radioGroups, setRadioGroups] = useState({
-        group1: "",
-        group2: "",
-        group3: "",
-      });
-    
-      const handleChange = (group: string, value: string) => {
-        setRadioGroups((prev) => ({ ...prev, [group]: value }));
-      };
-      
+  const [radioGroups, setRadioGroups] = useState({
+    group1: "",
+    group2: "",
+    group3: "",
+  });
+
+  const handleChange = (group: string, value: string) => {
+    setRadioGroups((prev) => ({ ...prev, [group]: value }));
+  };
+
   return (
     <section>
       <header>
@@ -36,7 +36,7 @@ const PaymentHTopContent = () => {
           </div>
         </div>
 
-        <div className="flex mt-5 justify-center items-center rounded-[100px] bg-[white] py-[20px] px-[30px] w-auto max-w-[450px] gap-[24px]">
+        <div className="flex mt-5 justify-center items-center rounded-[100px] bg-[white] py-[20px] px-[30px] w-auto max-w-[400px] gap-[24px]">
           <span className="text-[14px] font-[400] text-[#333333]">상태</span>
           <RadioButton
             options={["전체", "결제 완료", "결제 실패"]}
@@ -57,7 +57,7 @@ const PaymentHTopContent = () => {
         </div>
       </header>
     </section>
-  )
-}
+  );
+};
 
-export default PaymentHTopContent
+export default PaymentHTopContent;

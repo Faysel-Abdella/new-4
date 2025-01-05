@@ -1,18 +1,18 @@
-import Link from "next/link";
+import React from "react";
 
-export const EquipmentPIHeader = [
-  { label: "발행일자" },
-  { label: "공급자" },
-  { label: "품목" },
-  { label: "공급받는자" },
-  { label: "공급가액" },
-  { label: "세액" },
-  { label: "발행 금액" },
-  { label: "상태" },
-];
+const EquipmentTableData = ({ showModal }: { showModal?: () => void }) => {
+  const EquipmentPIHeader = [
+    { label: "발행일자" },
+    { label: "공급자" },
+    { label: "품목" },
+    { label: "공급받는자" },
+    { label: "공급가액" },
+    { label: "세액" },
+    { label: "발행 금액" },
+    { label: "상태" },
+  ];
 
-export const EquipementPTTableData = [
-  {
+  const EquipementPTTableData = Array.from({ length: 10 }, (_, index) => ({
     DateOfPublication: "2023-11-31",
     Provider: "주식회사 NNNN",
 
@@ -22,117 +22,21 @@ export const EquipementPTTableData = [
     TaxAmount: "10,000",
     IssueAmount: "10,000",
     Situation: (
-      <Link href={""} onClick={()=>{ 
-
-      }} className=''>
+      <span
+        onClick={showModal}
+        className={`${
+          index === 0 ? "text-[#F9616D] underline" : ""
+        } cursor-pointer`}
+      >
         발행완료
-      </Link>
+      </span>
     ),
-    
-  },
-  {
-    DateOfPublication: "2023-11-31",
-    Provider: "주식회사 NNNN",
+  }));
 
-    Item: "용역",
-    PersonReceivingSupply: "주식회사 NNNN",
-    SupplyPrice: "90,000",
-    TaxAmount: "10,000",
-    IssueAmount: "10,000",
-    Situation: (
-      <Link href={""} className="text-sm text-[#F05858] underline">
-        발행실패
-      </Link>
-    ),
-  },
-  {
-    DateOfPublication: "2023-11-31",
-    Provider: "주식회사 NNNN",
+  return {
+    EquipmentPIHeader,
+    EquipementPTTableData,
+  };
+};
 
-    Item: "용역",
-    PersonReceivingSupply: "주식회사 NNNN",
-    SupplyPrice: "90,000",
-    TaxAmount: "10,000",
-    IssueAmount: "10,000",
-    Situation: (
-      <Link href={""} className=''>
-        발행완료
-      </Link>
-    ),
-  },
-  {
-    DateOfPublication: "2023-11-31",
-    Provider: "주식회사 NNNN",
-
-    Item: "용역",
-    PersonReceivingSupply: "주식회사 NNNN",
-    SupplyPrice: "90,000",
-    TaxAmount: "10,000",
-    IssueAmount: "10,000",
-    Situation: (
-      <Link href={""} className=''>
-        발행완료
-      </Link>
-    ),
-  },
-  {
-    DateOfPublication: "2023-11-31",
-    Provider: "주식회사 NNNN",
-
-    Item: "용역",
-    PersonReceivingSupply: "주식회사 NNNN",
-    SupplyPrice: "90,000",
-    TaxAmount: "10,000",
-    IssueAmount: "10,000",
-    Situation: (
-      <Link href={""} className=''>
-        발행완료
-      </Link>
-    ),
-  },
-  {
-    DateOfPublication: "2023-11-31",
-    Provider: "주식회사 NNNN",
-
-    Item: "용역",
-    PersonReceivingSupply: "주식회사 NNNN",
-    SupplyPrice: "90,000",
-    TaxAmount: "이10,000",
-    IssueAmount: "10,000",
-    Situation: (
-      <Link href={""} className=''>
-        발행완료
-      </Link>
-    ),
-  },
-  {
-    DateOfPublication: "2023-11-31",
-    Provider: "주식회사 NNNN",
-
-    Item: "용역",
-    PersonReceivingSupply: "주식회사 NNNN",
-    SupplyPrice: "90,000",
-    TaxAmount: "10,000",
-    IssueAmount: "10,000",
-    Situation: (
-      <Link href={""} className=''>
-        발행완료
-      </Link>
-    ),
-  },
-  {
-    DateOfPublication: "2023-11-31",
-    Provider: "주식회사 NNNN",
-
-    Item: "용역",
-    PersonReceivingSupply: "주식회사 NNNN",
-    SupplyPrice: "90,000",
-    TaxAmount: "10,000",
-    IssueAmount: "10,000",
-    Situation: (
-      <Link href={""} className=''>
-        발행완료
-      </Link>
-    ),
-  },
-];
+export default EquipmentTableData;

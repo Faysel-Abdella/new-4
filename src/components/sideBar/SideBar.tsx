@@ -23,7 +23,7 @@ const SideBar = ({ children }: ISideBar) => {
             height={37}
           />
         </div>
-        <div className="flex flex-col gap-6 w-full max-h-full overflow-y-scroll">
+        <div className="flex flex-col gap-6 w-full max-h-full overflow-y-scroll scrollbar-hide">
           <div className="flex flex-col gap-4 justify-center items-center w-full">
             <Link
               href="/admin/home"
@@ -68,7 +68,7 @@ const SideBar = ({ children }: ISideBar) => {
           </div>
         </div>
       </div>
-      <div className="flex-1 bg-[#F2F3F6] min-h-screen px-10 py-5">
+      <div className="flex-1 bg-[#F2F3F6] min-h-screen px-10 py-5 max-w-[1477px]">
         {children}
       </div>
     </div>

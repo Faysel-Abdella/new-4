@@ -22,18 +22,18 @@ const EquimentPITopContent = () => {
   return (
     <div className="flex flex-col gap-5 mt-5">
       <div className="flex flex-col  p-5 bg-[#FFFFFF] rounded-[10px] gap-[10px] ">
-      <div className="w-fit px-[16px] py-[14px] bg-[#F1F3F6] rounded-[100px]">
-        <p className="text-[18px] text-[#333333]">세금계산서 발행 안내</p>
+        <div className="w-fit px-[16px] py-[14px] bg-[#F1F3F6] rounded-[100px]">
+          <p className="text-[18px] text-[#333333]">세금계산서 발행 안내</p>
+        </div>
+        <div className="flex  flex-col">
+          {description.map((item) => (
+            <p key={item.key} className="text-sm text-[#80808E]">
+              {item.items}
+            </p>
+          ))}
+        </div>
       </div>
-      <div className="flex  flex-col">
-        {description.map((item) => (
-          <p key={item.key} className="text-sm text-[#80808E]">
-            {item.items}
-          </p>
-        ))}
-      </div>
-      </div>
-      
+
       <div className="flex items-center justify-between">
         <div className="flex items-center py-[10px] px-[16px] bg-white rounded-[100px]">
           <p className="min-w-[54px] text-sm text-[#333333]">기간</p>
@@ -53,12 +53,14 @@ const EquimentPITopContent = () => {
             label="세금계산서 신규발행"
             backgroundColor="bg-[#404251]"
             textStyle="text-sm text-white"
+            padding="py-8 px-7"
             borderRadius="rounded-[100px]"
           />
           <Button
             label="Excel 다운로드"
             backgroundColor="bg-[#404251]"
             textStyle="text-sm text-white"
+            padding="py-8 px-7"
             borderRadius="rounded-[100px]"
           />
         </div>

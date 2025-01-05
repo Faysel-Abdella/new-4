@@ -1,7 +1,6 @@
 import React from "react";
 import { ChatType } from "./type";
 import ChatBubble from "./ChatBubble";
-import { CloseIcon } from "../Modals/Icons";
 
 const messages: ChatType[] = [
   {
@@ -38,14 +37,7 @@ interface ChatScreenProps {
 
 const ChatScreen: React.FC<ChatScreenProps> = ({ senderName, profileName }) => {
   return (
-    <div className="bg-[#F2F3F5]">
-      <div className="flex items-center bg-white justify-between px-4 py-[20px] relative">
-        <p className="font-bold text-center flex-1">장비 선택</p>
-        <div className="absolute right-4">
-          <CloseIcon />
-        </div>
-      </div>
-
+    <div className="bg-[#F2F3F5] pb-2 w-full">
       <div className="p-4 space-y-[16px] overflow-y-scroll overflow-x-hidden scrollbar-hide">
         {messages.map((message, index) => {
           return (

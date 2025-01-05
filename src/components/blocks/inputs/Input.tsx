@@ -3,12 +3,13 @@ import React from "react";
 import { IInput } from "./type";
 
 const TextInput = ({
+  labelColor = "text-[#A3A6AB]",
   label,
-  labelColor,
   labelWidth = "w-[130px]",
   type,
   containerStyle,
   placeholder,
+  height = "",
   ...rest
 }: IInput) => {
   return (
@@ -16,15 +17,13 @@ const TextInput = ({
       className={`flex gap-2 w-full justify-center items-center ${containerStyle}`}
     >
       {label && (
-        <label
-          className={`text-[#333333] text-[14px] font-[400] ${labelWidth}`}
-        >
+        <label className={`${labelColor} text-[14px] font-[400] ${labelWidth}`}>
           {label}
         </label>
       )}
       <Input
         classNames={{
-          mainWrapper: ` "w-full"`,
+          mainWrapper: ` "w-full ${height}"`,
           input:
             "placeholder:text-[#A3A6AB] placeholder:text-[13px] px-[0px] py-[12px]",
           label: "text-gray-500",
@@ -33,7 +32,6 @@ const TextInput = ({
         placeholder={placeholder}
         labelColor={labelColor}
         type={type}
-    
         {...rest}
       />
     </div>

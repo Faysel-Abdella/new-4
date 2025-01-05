@@ -2,11 +2,13 @@
 import { Button } from "@/src/components/blocks/buttons/Button";
 import { RadioButton } from "@/src/components/blocks/buttons/RadioButton";
 import InputNoLabel from "@/src/components/blocks/inputs/datePickerInput";
-import ModalWrapper from "@/src/components/blocks/Modals/ModalWrapper";
+import Modal from "@/src/components/blocks/Modals/Modal";
+import { useDisclosure } from "@nextui-org/react";
 
 import React, { useState } from "react";
 
 const Topcontent = () => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [radioGroups, setRadioGroups] = useState({
     group1: "",
     group2: "",
@@ -17,7 +19,6 @@ const Topcontent = () => {
     setRadioGroups((prev) => ({ ...prev, [group]: value }));
   };
   const [selecetedValue, setSelectedValue] = useState("");
-  const [showModal, setShowModal] = useState(false);
   return (
     <section>
       <header>
@@ -52,20 +53,24 @@ const Topcontent = () => {
           <div>
             <Button
               label="캐시 수동 적립/차감"
-              backgroundColor="bg-[#000000]"
+              backgroundColor="bg-[#404251]"
               textStyle="text-sm text-[#FFFFFF]"
               borderRadius="rounded-[100px]"
-              padding="py-[16px] px-[20px]"
-              onPress={() => {
-                setShowModal(true);
-              }}
+              padding="py-8 px-7"
+              onPress={onOpen}
             />
           </div>
         </div>
       </header>
-      {showModal && (
-        <ModalWrapper height={"h-[300px]"} width={"w-[570px]"}>
-          <div className="flex flex-col ">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        buttonLabel={"변경"}
+        cancelBtnLabel="닫기"
+        modalWidthInPercent="max-w-[35%]"
+      >
+        <div className=" w-full flex justify-center items-center pt-[40px] pb-[10px]">
+          <div className="flex  w-full flex-col ">
             <div className="flex items-center gap-5">
               <p className="min-w-[81px] text-sm text-[#333333]">구분</p>
               <RadioButton
@@ -90,31 +95,10 @@ const Topcontent = () => {
             </div>
             <div className="flex items-center mt-[40px] w-full gap-5">
               <div className="min-w-[81px]"></div>
-              <div className="flex  gap-4">
-                <Button
-                  label="닫기"
-                  backgroundColor="bg-[#A3A6AB]"
-                  textStyle="text-sm text-white"
-                  borderRadius="rounded-[5px]"
-                  onPress={()=>{setShowModal(false)}}
-                   padding="px-[11px] py-[24px]"
-                  width="w-[160px]"
-                />
-                 <Button
-                  label="변경"
-                  backgroundColor="bg-[#4A4E57]"
-                  textStyle="text-sm text-white"
-                  borderRadius="rounded-[5px]"
-                  onPress={()=>{}}
-                  padding="px-[11px] py-[24px]"
-                  width="w-[160px]"
-                  
-                />
-              </div>
             </div>
           </div>
-        </ModalWrapper>
-      )}
+        </div>
+      </Modal>
     </section>
   );
 };

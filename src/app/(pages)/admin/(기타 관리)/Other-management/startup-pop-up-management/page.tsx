@@ -4,18 +4,22 @@ import { RadioButton } from "@/src/components/blocks/buttons/RadioButton";
 import { SearchInput } from "@/src/components/blocks/inputs/SearchInput";
 import React, { useState } from "react";
 import BannerTable from "../components/BannerTable";
+import Modal from "@/src/components/blocks/Modals/Modal";
+import { useDisclosure } from "@nextui-org/react";
+import RegistrationModal from "../components/RegistrationModal";
 
 const StartupPopupManagement = () => {
   const [activePage, setActivePage] = useState(1);
-
+  const [selectedFirst, setSelectedFirst] = useState("전체");
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <div className="space-y-[20px]">
       <div className="flex justify-center items-center rounded-[100px] bg-[white] py-[10px] px-[30px] w-auto max-w-[500px] gap-[24px]">
         <span className="text-[14px] font-[400] text-[#333333]">등록일</span>
         <RadioButton
           options={["전체", "설정"]}
-          selectedValue="전체"
-          onChange={() => {}}
+          selectedValue={selectedFirst}
+          onChange={(value) => setSelectedFirst(value)}
           optionStyles="flex flex-col gap-2 text-[14px] font-[400] text-[#333333]"
         />
         <div className="flex justify-center items-center gap-[5px] text-[#333333]">
@@ -51,6 +55,7 @@ const StartupPopupManagement = () => {
               backgroundColor={"bg-[#404251]"}
               borderRadius={"rounded-full"}
               textStyle={"text-[14px]  text-white"}
+              onPress={onOpen}
             />
           </div>
         </div>
@@ -69,6 +74,17 @@ const StartupPopupManagement = () => {
           ))}
         </div>
       </div>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        cancelBtnLabel="취소"
+        buttonLabel={"등록"}
+        modalWidthInPercent="max-w-[50%]"
+      >
+        <div className=" w-full flex justify-center items-center pt-[10px] pb-[10px]">
+          <RegistrationModal />
+        </div>
+      </Modal>
     </div>
   );
 };

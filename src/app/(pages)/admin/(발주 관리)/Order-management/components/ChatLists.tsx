@@ -30,6 +30,7 @@ const ChatLists = () => {
             selectStyles="w-[105px] text-[14px] font-[400] text-[#333333]"
             insideStyles="text-[14px] font-[400] text-[#333333]"
             selectedItemRadius="rounded-[100px]"
+            selectContainerStyles="w-[90px]"
           />
 
           <SearchInput placeholder="검색어를 입력해주세요" onClick={() => {}} />

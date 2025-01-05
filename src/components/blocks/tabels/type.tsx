@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from "react";
 export interface ITable {
+  tabelWidth?: string;
   header: IHeader[];
   hasPagination?: boolean;
   title?: string;
@@ -8,12 +9,13 @@ export interface ITable {
   buttonLabel?: string;
   buttonWidth?: string;
   buttonRadius?: string;
-  content?:boolean
+  content?: boolean;
   onClick?: () => void;
+  contenBtntOnClick?: () => void;
 }
 
 export interface IHeader {
-  label: string|ReactNode;
+  label: string | ReactNode;
 }
 
 export interface IData {

@@ -1,4 +1,3 @@
-
 import { RadioButton } from "@/src/components/blocks/buttons/RadioButton";
 import { SearchInput } from "@/src/components/blocks/inputs/SearchInput";
 import React, { useState } from "react";
@@ -13,11 +12,11 @@ const UsageMTopcontent = () => {
   const handleChange = (group: string, value: string) => {
     setRadioGroups((prev) => ({ ...prev, [group]: value }));
   };
- 
+
   return (
     <section>
       <header>
-        <div className="flex mt-1 justify-center items-center rounded-[100px] bg-[white] py-[10px] px-[30px] w-auto max-w-[500px] gap-2">
+        <div className="flex mt-1 justify-center items-center rounded-[100px] bg-[white] py-[10px] px-[30px] w-auto max-w-[500px] gap-4">
           <span className="text-[14px] font-[400] text-[#333333]">변동일</span>
           <RadioButton
             options={["전체", "설정"]}

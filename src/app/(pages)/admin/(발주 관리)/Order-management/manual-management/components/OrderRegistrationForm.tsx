@@ -6,10 +6,9 @@ import DropDown from "@/src/components/blocks/dropdown/DropDown";
 import InputNoLabel from "@/src/components/blocks/inputs/datePickerInput";
 import React, { useState } from "react";
 
-
 const OrderRegistrationForm = () => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]); // Empty initially
-  const [selectedValue,setSelectedValue]=useState('')
+  const [selectedValue, setSelectedValue] = useState("");
 
   const handleCheckboxChange = (updatedValues: string[]) => {
     setSelectedValues(updatedValues); // Update the state
@@ -34,7 +33,7 @@ const OrderRegistrationForm = () => {
   ];
 
   const selectedOption3 = option3[0].key;
- 
+
   return (
     <section>
       {/* first from component */}
@@ -64,7 +63,9 @@ const OrderRegistrationForm = () => {
                 onChange={handleCheckboxChange}
                 gap="gap-[20px]"
                 inputTextStyles=" text-sm text-[#404251] w-full"
-                inputStyles="" Label={false}              />
+                inputStyles=""
+                Label={false}
+              />
             </div>
           </div>
         </div>
@@ -137,7 +138,9 @@ const OrderRegistrationForm = () => {
                 options={["제안 받기"]}
                 selectedValues={selectedValues}
                 alignment="horizontal"
-                onChange={handleCheckboxChange} Label={false}              />
+                onChange={handleCheckboxChange}
+                Label={false}
+              />
             </div>
           </div>
         </div>
@@ -192,7 +195,9 @@ const OrderRegistrationForm = () => {
               <RadioButton
                 options={["필요", "불필요"]}
                 selectedValue={selectedValue}
-                onChange={(value) => {setSelectedValue(value)}}
+                onChange={(value) => {
+                  setSelectedValue(value);
+                }}
                 optionStyles="text-sm text-[#333333]"
               />
             </div>
@@ -210,14 +215,16 @@ const OrderRegistrationForm = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center mt-5 "><Button
-              label="등록"
-              backgroundColor="bg-[#4A4E57]"
-              borderRadius="rounded-[5px]"
-              textStyle="text-sm text-white"
-              padding="p-[10px]"
-              width="w-[148px]"
-            /></div>
+      <div className="flex justify-center mt-5 ">
+        <Button
+          label="등록"
+          backgroundColor="bg-[#4A4E57]"
+          borderRadius="rounded-[5px]"
+          textStyle="text-sm text-white"
+          padding="p-[10px]"
+          width="w-[148px]"
+        />
+      </div>
     </section>
   );
 };

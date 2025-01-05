@@ -2,8 +2,8 @@
 import React from "react";
 import TopContent from "../TopContent";
 import Table from "@/src/components/blocks/tabels/Table";
-import { membershipManagementData, membershipManagementHeader } from "../data";
 import { useRouter } from "next/navigation";
+import data from "../data";
 
 const Ordering = () => {
   const routes = useRouter();
@@ -12,6 +12,13 @@ const Ordering = () => {
       "/admin/Membership-Management/membership-management/applicationStatus"
     );
   };
+
+  const { membershipManagementData, membershipManagementHeader } = data({
+    exponentPagePath:
+      "/admin/Membership-Management/membership-management/exponent",
+    exponentSecondPath:
+      "/admin/Membership-Management/membership-management/exponentSecond",
+  });
 
   return (
     <div className="flex flex-col gap-4">

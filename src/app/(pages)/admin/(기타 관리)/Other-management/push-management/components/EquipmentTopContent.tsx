@@ -3,7 +3,7 @@ import { Button } from "@/src/components/blocks/buttons/Button";
 import { RadioButton } from "@/src/components/blocks/buttons/RadioButton";
 import DropDown from "@/src/components/blocks/dropdown/DropDown";
 import { SearchInput } from "@/src/components/blocks/inputs/SearchInput";
-import React from "react";
+import React, { useState } from "react";
 
 const EquipmentTopContent = () => {
   const dropDownOptions = [
@@ -21,6 +21,8 @@ const EquipmentTopContent = () => {
     },
   ];
   const items = ["만원/40분", "만원/반일", "만원/일대", "만원/월대"];
+  const [selectedFirst, setSelectedFirst] = useState("임대 (장비+기사)");
+
   return (
     <div className="space-y-[20px]">
       <div className="flex gap-[20px]">
@@ -38,6 +40,7 @@ const EquipmentTopContent = () => {
             selectStyles="w-[125px] text-[14px] font-[400] text-[#333333]"
             insideStyles="text-[14px] font-[400] text-[#333333]"
             selectedItemRadius="rounded-[100px]"
+            selectContainerStyles="w-[95px]"
           />
 
           <DropDown
@@ -50,6 +53,7 @@ const EquipmentTopContent = () => {
             selectStyles="w-[125px] text-[14px] font-[400] text-[#333333]"
             insideStyles="text-[14px] font-[400] text-[#333333]"
             selectedItemRadius="rounded-[100px]"
+            selectContainerStyles="w-[95px]"
           />
         </div>
         <div className="flex justify-center items-center rounded-[100px] bg-[white] py-[10px] px-[30px] w-auto max-w-[260px] gap-[24px]">
@@ -66,9 +70,10 @@ const EquipmentTopContent = () => {
             selectStyles="w-[125px] text-[14px] font-[400] text-[#333333]"
             insideStyles="text-[14px] font-[400] text-[#333333]"
             selectedItemRadius="rounded-[100px]"
+            selectContainerStyles="w-[95px]"
           />
         </div>
-        <div className="flex justify-center items-center rounded-[100px] bg-[white] py-[10px] px-[30px] w-auto max-w-[360px] gap-[24px]">
+        <div className="flex justify-center items-center rounded-[100px] bg-[white] py-[10px] px-[30px] w-auto max-w-[380px] gap-[24px]">
           <span className="text-[14px] font-[400] text-[#333333]">
             활동지역
           </span>
@@ -82,6 +87,7 @@ const EquipmentTopContent = () => {
             selectStyles="w-[125px] text-[14px] font-[400] text-[#333333]"
             insideStyles="text-[14px] font-[400] text-[#333333]"
             selectedItemRadius="rounded-[100px]"
+            selectContainerStyles="w-[120px]"
           />
           <DropDown
             options={[
@@ -93,6 +99,7 @@ const EquipmentTopContent = () => {
             selectStyles="w-[125px] text-[14px] font-[400] text-[#333333]"
             insideStyles="text-[14px] font-[400] text-[#333333]"
             selectedItemRadius="rounded-[100px]"
+            selectContainerStyles="w-[95px]"
           />
         </div>
       </div>
@@ -107,6 +114,7 @@ const EquipmentTopContent = () => {
             selectStyles="w-[105px] text-[14px] font-[400] text-[#333333]"
             insideStyles="text-[14px] font-[400] text-[#333333]"
             selectedItemRadius="rounded-[100px]"
+            selectContainerStyles="w-[95px]"
           />
           <div className="bg-[#F2F3F5] w-[94px] h-[44px] rounded-[100px]"></div>
           <span className="text-[14px] font-[400] text-[#333333]">
@@ -117,8 +125,8 @@ const EquipmentTopContent = () => {
           <span className="text-[14px] font-[400] text-[#333333]">구분</span>
           <RadioButton
             options={["임대 (장비+기사)", "스페어 (기사만)", "렌탈 (장비만)"]}
-            selectedValue="임대 (장비+기사)"
-            onChange={() => {}}
+            selectedValue={selectedFirst}
+            onChange={(value) => setSelectedFirst(value)}
             optionStyles="flex flex-col gap-2 text-[14px] font-[400] text-[#333333]"
           />
         </div>
@@ -148,6 +156,7 @@ const EquipmentTopContent = () => {
               selectStyles="w-[105px] text-[14px] font-[400] text-[#333333]"
               insideStyles="text-[14px] font-[400] text-[#333333]"
               selectedItemRadius="rounded-[100px]"
+              selectContainerStyles="w-[95px]"
             />
 
             <SearchInput

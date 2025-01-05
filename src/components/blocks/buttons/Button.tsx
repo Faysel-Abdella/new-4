@@ -8,13 +8,14 @@ export const Button = ({
   backgroundColor,
   borderRadius,
   textStyle,
+  borderColor,
   width,
   ...rest
 }: IButton) => {
   return (
     <NButton
       disabled={disabled}
-      className={`${borderRadius} ${padding} ${width ? width : "w-full"} ${
+      className={`${borderRadius} ${borderColor} ${padding} ${width ? width : "w-full"} ${
         disabled ? "bg-[#ABAFB7]" : backgroundColor
       } ${textStyle}`}
       {...rest}

@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import EquimentPITopContent from "./EquimentPITopContent";
-import { EquipementPTTableData, EquipmentPIHeader } from "./EquipmentTableData";
 import Table from "@/src/components/blocks/tabels/Table";
-
-import ModalWrapper from "@/src/components/blocks/Modals/ModalWrapper";
-import { Button } from "@/src/components/blocks/buttons/Button";
+import Modal from "@/src/components/blocks/Modals/Modal";
+import { useDisclosure } from "@nextui-org/react";
+import EquipmentTableData from "./EquipmentTableData";
 
 const IssuanceOfTaxInvoice = () => {
-  const [showModal, setShowModal] = useState(false);
-  const handleChange = () => {
-    setShowModal(!showModal);
-  };
+  const {
+    isOpen: isOpenForm,
+    onOpen: onOpenWithForm,
+    onOpenChange: onOpenChangeWithForm,
+  } = useDisclosure();
+  const { EquipementPTTableData, EquipmentPIHeader } = EquipmentTableData({
+    showModal: onOpenWithForm,
+  });
+
   return (
     <div>
       <EquimentPITopContent />
@@ -22,35 +26,21 @@ const IssuanceOfTaxInvoice = () => {
           hasPagination={true}
         />
 
-        {showModal && (
-          <ModalWrapper width="w-[470px] h-[242px]">
-            <div className="flex flex-col justify-center items-center gap-[40px]">
-              <p className="text-[20px] text-[#333333]">발행 실패 오류 코드</p>
-              <p className="text-[20px] text-[#333333]">
-                세금계산서를 재발행 하시겠습니까?
-              </p>
-              <div className="flex gap-4">
-                <Button
-                  label="취소"
-                  backgroundColor="bg-[#A3A6AB]"
-                  padding="p-[11px]"
-                  borderRadius="rounded-[5px]"
-                  textStyle="text-sm text-white"
-                  onPress={handleChange}
-                  width="w-[148px]"
-                />
-                <Button
-                  label="재발행"
-                  backgroundColor="bg-[#4A4E57]"
-                  padding="p-[11px]"
-                  borderRadius="rounded-[5px]"
-                  textStyle="text-sm text-white"
-                  width="w-[148px]"
-                />
-              </div>
-            </div>
-          </ModalWrapper>
-        )}
+        <Modal
+          isOpen={isOpenForm}
+          onOpenChange={onOpenChangeWithForm}
+          buttonLabel={"재발행"}
+          cancelBtnLabel="취소"
+        >
+          <div className=" w-full flex flex-col gap-5 justify-center items-center pt-[50px] pb-[10px]">
+            <span className="text-[20px] font-[400] text-[#333333] text-center">
+              발행 실패 오류 코드
+            </span>
+            <span className="text-[20px] font-[400] text-[#333333] text-center">
+              세금계산서를 재발행 하시겠습니까?
+            </span>
+          </div>
+        </Modal>
       </div>
     </div>
   );

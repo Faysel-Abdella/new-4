@@ -10,6 +10,8 @@ const DropDown = ({
   selectContainerStyles,
   insideStyles,
   selectedItemRadius = "rounded-md",
+  valueColor = "",
+  placeholder = "",
 }: DropDownProp) => {
   return (
     <div className={`flex ${selectContainerStyles} items-center`}>
@@ -18,9 +20,10 @@ const DropDown = ({
           classNames={{
             mainWrapper: [`${selectStyles} w-full`],
             trigger: [`${insideStyles} ${selectedItemRadius} w-full`],
-            value: ["text-[15px]"],
+            value: [` ${valueColor} text-[15px]`],
           }}
           disallowEmptySelection={true}
+          placeholder={placeholder}
           defaultSelectedKeys={[defaultSelectedKeys]}
           aria-label="Toggle selection"
         >

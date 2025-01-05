@@ -19,4 +19,5 @@ export type TableModalType = {
   handleDisabledButton: () => void;
   handleEnabledButton: () => void;
   height?: string;
+  width?: string;
 };

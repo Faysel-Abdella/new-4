@@ -4,23 +4,22 @@ import { RadioButton } from "@/src/components/blocks/buttons/RadioButton";
 import Checkbox from "@/src/components/blocks/checkbox/Checkbox";
 import DropDown from "@/src/components/blocks/dropdown/DropDown";
 import InputNoLabel from "@/src/components/blocks/inputs/datePickerInput";
-import ModalWrapper from "@/src/components/blocks/Modals/ModalWrapper";
-import Table from "@/src/components/blocks/tabels/Table";
-import { Textarea } from "@nextui-org/react";
+import { useDisclosure } from "@nextui-org/react";
 import React, { useState } from "react";
-import { SendModalHeader, SendModalTableData } from "./ListTableData";
+
+import DetailsModal from "./DetailsModal";
 
 const DetailandEditForm = () => {
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+ 
   const [selecetedValue, setSelectedValue] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const handleModalChange = () => {
-    setShowModal(!showModal);
-  };
 
-  const handleCheckboxChange = (updatedValues: string[]) => {
-    setSelectedValues(updatedValues); // Update the state
-  };
+  const {
+    isOpen: isOpenForm,
+    onOpen: onOpenWithForm,
+    onOpenChange: onOpenChangeWithForm,
+  } = useDisclosure();
+
+
   const option1 = [
     { key: "1", label: "광역시도" },
     { key: "2", label: "광역시도" },
@@ -41,6 +40,12 @@ const DetailandEditForm = () => {
   ];
 
   const selectedOption3 = option3[0].key;
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+
+  // Handle logic for changing selected values
+  const handleCheckboxChange = (updatedValues: string[]) => {
+    setSelectedValues(updatedValues);
+  };
   return (
     <section>
       {/* first from component */}
@@ -71,7 +76,7 @@ const DetailandEditForm = () => {
                 gap="gap-[20px]"
                 inputTextStyles=" text-sm text-[#404251] w-full"
                 inputStyles=""
-                Label={false}
+              Label={true}
               />
             </div>
           </div>
@@ -292,65 +297,16 @@ const DetailandEditForm = () => {
             textStyle="text-sm text-white"
             padding="p-[10px]"
             width="w-[148px]"
-            onPress={handleModalChange}
+            onPress={onOpenWithForm}
           />
         </div>
       </div>
-      {showModal && (
-        <ModalWrapper width="w-[680px]" height="h-[684px]">
-          <div className="flex flex-col gap-2">
-            <div className=" flex gap-5">
-              <p className="min-w-[81px] text-sm text-[#404251]">구분</p>
-              <RadioButton
-                options={[
-                  "발주사(홍길동 | 01011112222)",
-                  "장비사업자(김철수 | 01012345678)",
-                ]}
-                selectedValue={selecetedValue}
-                onChange={(value) => {
-                  setSelectedValue(value);
-                }}
-                optionStyles="text-sm text-[#333333]"
-              />
-            </div>
-            <div className="flex items-center gap-5">
-              {" "}
-              <p className="min-w-[81px] text-sm text-[#404251]">문자내용</p>
-              <Textarea
-                className="max-w-lg"
-                minRows={24}
-             size="lg"
-                placeholder="로그인"
-                variant="bordered"
-              />
-            </div>
-            <div className="flex justify-between py-3 border-b-1 border-[#E4E5EA]">
-              <Button
-                label="닫기"
-                backgroundColor="bg-[#A3A6AB]"
-                borderRadius="rounded-[5px]"
-                textStyle="text-sm text-white"
-                onPress={handleModalChange}
-                padding="p-[11px]"
-                width="w-[106px]"
-              
-              />
-               <Button
-                label="문자 발송"
-                backgroundColor="bg-[#4A4E57]"
-                borderRadius="rounded-[5px]"
-                textStyle="text-sm text-white"
-                onPress={handleModalChange}
-                padding="p-[11px]"
-                width="w-[106px]"
-              
-              />
-            </div>
-            <Table data={SendModalTableData} header={SendModalHeader} />
-          </div>
-        </ModalWrapper>
-      )}
-      
+
+      <DetailsModal
+        isOpen={isOpenForm}
+        onOpen={onOpenWithForm}
+        onOpenChange={onOpenChangeWithForm}
+      />
     </section>
   );
 };

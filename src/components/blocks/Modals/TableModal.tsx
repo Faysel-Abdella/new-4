@@ -8,10 +8,11 @@ const TableModal: React.FC<TableModalType> = ({
   handleDisabledButton,
   handleEnabledButton,
   height = "",
+  width = "w-[413px]",
 }) => {
   return (
     <div
-      className={`p-10 space-y-10 w-[413px] ${height} bg-white shadow-large absolute inset-0 m-auto z-50 `}
+      className={`p-10 space-y-10 ${width}  ${height} bg-white shadow-large absolute inset-0 m-auto z-50 `}
     >
       <div className="text-center">{content}</div>
 

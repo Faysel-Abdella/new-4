@@ -1,7 +1,8 @@
 import React from "react";
+import RegistrationManagement from "./components/RegistrationManagement";
 
-const RegistrationManagement = () => {
-  return <div>RegistrationManagement</div>;
+const Page = () => {
+  return <RegistrationManagement/>;
 };
 
-export default RegistrationManagement;
+export default Page;

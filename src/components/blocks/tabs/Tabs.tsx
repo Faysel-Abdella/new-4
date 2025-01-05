@@ -18,6 +18,8 @@ const CustomTab = ({
   unselectedTextColor = "text-gray-700",
   onTabChange,
   className = "",
+  containerWidth, // New: for the tab container
+  tabWidth
 }: CustomTabProps) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -31,7 +33,7 @@ const CustomTab = ({
       <div
         className={`flex w-fit ${raduis} bg-white ${containerPadding} ${
           separator ? "border-r-1" : ""
-        } ${borderColor}`}
+        }  ${borderColor} ${containerWidth || "w-auto"}`}
         role="tablist"
       >
         {items.map((item, index) => (
@@ -42,7 +44,9 @@ const CustomTab = ({
             aria-controls={`tab-panel-${index}`}
             id={`tab-${index}`}
             onClick={() => setSelectedIndex(index)}
-            className={` text-center py-3 px-8   transition-colors duration-300  ${raduis} ${padding} ${
+            className={` ${
+              tabWidth || "w-auto"
+            } text-center py-3 px-8   transition-colors duration-300  ${raduis} ${padding} ${
               selectedIndex === index
                 ? `${selectedBgColor} ${selectedBorderColor} ${selectedTextColor} font-bold`
                 : `${unselectedBgColor} ${unselectedBorderColor} ${unselectedTextColor} font-normal`

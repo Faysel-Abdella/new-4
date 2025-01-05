@@ -1,10 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import PaymentHTopContent from "./PaymentHTopContent";
 import Table from "@/src/components/blocks/tabels/Table";
-import { PaymentHistoryHeader, PaymentHTableData } from "./PaymentHTableData";
-import ModalWrapper from "@/src/components/blocks/Modals/ModalWrapper";
-import { Button } from "@/src/components/blocks/buttons/Button";
+import PaymentHTableData from "./PaymentHTableData";
+import { useDisclosure } from "@nextui-org/react";
+import Modal from "@/src/components/blocks/Modals/Modal";
 
 const PaymentHistory = () => {
   const PaymentCompleteContent = [
@@ -21,31 +21,41 @@ const PaymentHistory = () => {
     { title: "결제 금액", description: "100,000" },
     { title: "실패사유", description: "PG사 오류코드 호출" },
   ];
-  const [showCompletedModal,setCompletedModal] = useState(false);
-  const [showFailedModal,setFailedModal] = useState(false);
-  const handlePaymentComplete = () => {
-   setCompletedModal(!showCompletedModal);
-  };
-  const handlePaymetFailed = () => {
-   setFailedModal(!showFailedModal);
-  };
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isOpenFail,
+    onOpen: onOpenFail,
+    onOpenChange: onOpenChangeFail,
+  } = useDisclosure();
+
+  const { PaymentHistoryData, PaymentHistoryHeader } = PaymentHTableData({
+    showSuccessModal: onOpen,
+    showFailedModal: onOpenFail,
+  });
+
   return (
     <div>
       <PaymentHTopContent />
       <div className="mt-5">
         <Table
-          data={PaymentHTableData}
+          data={PaymentHistoryData}
           header={PaymentHistoryHeader}
           title="전체 NN건 | 결제 완료 NN건 | 결제 실패 NN건"
           hasPagination={true}
         />
       </div>
 
-      {showCompletedModal && (
-        <ModalWrapper width="w-[413px]" height="h-[310px]">
-          <div className="flex  flex-col ">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        buttonLabel={"확인"}
+        modalWidthInPercent="max-w-[30%]"
+      >
+        <div className=" w-full flex justify-center items-center pt-[50px] pb-[10px]">
+          <div className="flex w-full flex-col ">
             {PaymentCompleteContent.map((item, index) => (
-              <div key={index} className="flex mb-[10px] ">
+              <div key={index} className="flex w-full mb-[10px] ">
                 <p className="min-w-[81px] text-sm text-[#A3A6AB]">
                   {item.title}
                 </p>
@@ -54,25 +64,20 @@ const PaymentHistory = () => {
                 </p>
               </div>
             ))}
-            <div className="flex justify-center mt-[40px] ">
-              <Button
-                label="확인"
-                backgroundColor="bg-[#4A4E57]"
-                padding="p-[11px]"
-                width="w-[148px]"
-                textStyle="text-sm text-white"
-                borderRadius="rounded-[5px]"
-                onPress={handlePaymentComplete}
-              />
-            </div>
           </div>
-        </ModalWrapper>
-      )}
-      {showFailedModal&& (
-        <ModalWrapper width="w-[413px]" height="h-[310px]">
-          <div className="flex  flex-col ">
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={isOpenFail}
+        onOpenChange={onOpenChangeFail}
+        buttonLabel={"확인"}
+        modalWidthInPercent="max-w-[30%]"
+      >
+        <div className=" w-full flex justify-center items-center pt-[50px] pb-[10px]">
+          <div className="flex w-full flex-col ">
             {PaymentFailedContent.map((item, index) => (
-              <div key={index} className="flex mb-[10px] ">
+              <div key={index} className="flex full mb-[10px] ">
                 <p className="min-w-[81px] text-sm text-[#A3A6AB]">
                   {item.title}
                 </p>
@@ -81,21 +86,9 @@ const PaymentHistory = () => {
                 </p>
               </div>
             ))}
-            <div className="flex justify-center mt-[40px] ">
-              <Button
-                label="확인"
-                backgroundColor="bg-[#4A4E57]"
-                padding="p-[11px]"
-                width="w-[148px]"
-                textStyle="text-sm text-white"
-                borderRadius="rounded-[5px]"
-                onPress={handlePaymetFailed}
-              />
-            </div>
           </div>
-        </ModalWrapper>
-      )}
-      
+        </div>
+      </Modal>
     </div>
   );
 };

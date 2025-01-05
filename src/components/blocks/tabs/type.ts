@@ -19,6 +19,8 @@ export interface CustomTabProps {
   unselectedBgColor?: string;
   onTabChange?: (index: number) => void;
   className?: string;
+  containerWidth?:string
+  tabWidth?:string
 }
 
   

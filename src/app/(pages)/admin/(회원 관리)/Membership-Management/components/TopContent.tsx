@@ -28,9 +28,9 @@ const TopContent = ({
     },
   ];
   const [radioGroups, setRadioGroups] = useState({
-    group1: '',
-    group2: '',
-    group3:''
+    group1: "",
+    group2: "",
+    group3: "",
   });
 
   const handleChange = (group: string, value: string) => {
@@ -44,7 +44,7 @@ const TopContent = ({
         <RadioButton
           options={["전체", "설정"]}
           selectedValue={radioGroups.group1}
-        onChange={(value) => handleChange('group1', value)}
+          onChange={(value) => handleChange("group1", value)}
           optionStyles="flex flex-col gap-2 text-[14px] font-[400] text-[#333333]"
         />
         <div className="flex justify-center items-center gap-[5px] text-[#333333]">
@@ -66,7 +66,7 @@ const TopContent = ({
           <RadioButton
             options={["전체", "정상", "정지"]}
             selectedValue={radioGroups.group2}
-        onChange={(value) => handleChange('group2', value)}
+            onChange={(value) => handleChange("group2", value)}
             optionStyles="flex flex-col gap-2 text-[14px] font-[400] text-[#333333]"
           />
         </div>
@@ -75,7 +75,7 @@ const TopContent = ({
           <RadioButton
             options={["전체", "카카오", "네이버"]}
             selectedValue={radioGroups.group3}
-        onChange={(value) => handleChange('group3', value)}
+            onChange={(value) => handleChange("group3", value)}
             optionStyles="flex flex-col gap-2 text-[14px] font-[400] text-[#333333]"
           />
         </div>
@@ -91,6 +91,7 @@ const TopContent = ({
               selectStyles="w-[105px] text-[14px] font-[400] text-[#333333]"
               insideStyles="text-[14px] font-[400] text-[#333333]"
               selectedItemRadius="rounded-[100px]"
+              selectContainerStyles="w-[120px]"
             />
 
             <SearchInput

@@ -1,9 +1,8 @@
-import { Button } from "@/src/components/blocks/buttons/Button";
 import React from "react";
 
 const DetailEditModal = () => {
   return (
-    <div className="flex flex-col text-[14px] space-y-[40px] bg-white p-10 w-[545px]">
+    <div className="flex flex-col text-[14px]  bg-white p-10 w-[545px]">
       <div className="grid grid-cols-8 gap-[20px]">
         <p className="col-span-2 text-[#A3A6AB] ">상태</p>
         <p className="col-span-5 text-[#333333]">종료</p>
@@ -22,14 +21,6 @@ const DetailEditModal = () => {
         </p>
         <p className="col-span-2 text-[#A3A6AB]">랜딩페이지</p>
         <p className="col-span-5 text-[#333333]">https://www.url.com</p>
-      </div>
-      <div className="flex justify-center items-center ">
-        <Button
-          label={"취소"}
-          backgroundColor={"bg-[#A3A6AB]"}
-          borderRadius={"rounded-[5px]"}
-          textStyle={"text-white w-[148px]"}
-        />
       </div>
     </div>
   );

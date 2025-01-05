@@ -1,10 +1,18 @@
-'use client';
-import dynamic from 'next/dynamic';
-import React, { useRef } from 'react';
+"use client";
+import dynamic from "next/dynamic";
+import React, { useRef } from "react";
+ 
+ 
+ 
 
-
-const MarkDown = ({editorConatinerStyles}:{editorConatinerStyles?:string}) => {
-  const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
+const MarkDown = ({
+  editorConatinerStyles,
+  value,
+}: {
+  editorConatinerStyles?: string;
+  value?: string;
+}) => {
+   const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
   const editor = useRef(null);
   const config = {
     readonly: false,
@@ -17,13 +25,13 @@ const MarkDown = ({editorConatinerStyles}:{editorConatinerStyles?:string}) => {
 
   return (
     <div className={editorConatinerStyles}>
-            <JoditEditor
-              ref={editor}
-              config={config}
-              value=""
-              onChange={(newContent) => console.log(newContent)}
-            />
-          </div>
+      <JoditEditor
+        ref={editor}
+        config={config}
+        value={value || ""}
+        onChange={(newContent) => console.log(newContent)}
+      />
+    </div>
   );
 };
 

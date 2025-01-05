@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+'use client'
 import React, { useState } from "react";
 import {
   Table as NextTable,
@@ -14,6 +15,7 @@ import { Button } from "../buttons/Button";
 import { RadioButton } from "../buttons/RadioButton";
 
 const Table = ({
+  tabelWidth = "w-full",
   header,
   data,
   hasPagination = false,
@@ -23,10 +25,11 @@ const Table = ({
   buttonRadius = "rounded-[100px]",
   content = false,
   onClick = () => {},
+  contenBtntOnClick = () => {},
 }: ITable) => {
   const [selectedValue, setSelectedValue] = useState("");
   return (
-    <div className="w-full">
+    <div className={`${tabelWidth}`}>
       <NextTable
         aria-label="Data Table"
         shadow="none"
@@ -88,6 +91,7 @@ const Table = ({
                   textStyle="text-sm text-white"
                   padding="py-[6px] px-[10px]"
                   width="w-[26px]"
+                  onPress={contenBtntOnClick}
                 />
               </div>
             )}
